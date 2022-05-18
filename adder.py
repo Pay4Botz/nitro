@@ -36,7 +36,7 @@ url = "https://github.com"
 try:
     response = requests.get(url)  # Get the responce from the url
     print("Internet check")
-    
+    time.sleep(.4)
 except requests.exceptions.ConnectionError:
     # Tell the user
     input("You are not connected to internet, check your connection and try again.\nPress enter to exit")
@@ -54,29 +54,29 @@ class NitroGen:  # Initialise the class
             ctypes.windll.kernel32.SetConsoleTitleW(
                 "Nitro Generator and Checker ")  # Change the
         else:  # Or if it is unix
-            print('Nitro Generator '),
-             
+            print(f'\33]0;Nitro Generator and Checker \a',
+                  end='', flush=True)  # Update title of command prompt
 
         try:
-            num = 9999999  # Ask the user for the amount of codes
+            num = 999999  # Ask the user for the amount of codes
         except ValueError:
-            input("Specified input wasn't a number.\nPress enter to exit")
-            exit()  # Exit program
+            print('eror'# Exit program
 
         if USE_WEBHOOK:
             # Get the webhook url, if the user does not wish to use a webhook the message will be an empty string
-            #print("If you want to use a Discord webhook, type it here or press enter to ignore: ")
-            url = 'https://discord.com/api/webhooks/976486505105223700/9Zzu_F8agmW1XcUcUWFsO8UVOUkJ40uYlIdaej9iOer2hHY-lnqB2httH993YT4o4p_U'
+            #self.slowType(
+                #"If you want to use a Discord webhook, type it here or press enter to ignore: ", .02, newLine=False)
+            url = input('')  # Get the awnser
             # If the url is empty make it be None insted
             webhook = url if url != "" else None
             
             if webhook is not None:
                 DiscordWebhook(  # Let the user know it has started logging the ids
                         url=url,
-                        content=f"Started checking urls\nI will send any valid codes here,\n Made by Adarsh :heart: "
+                        content=f"```I have started checking urls\nI will send any valid codes here```"
                     ).execute()
 
-        
+        # print() # Print a newline for looks
 
         valid = []  # Keep track of valid codes
         invalid = 0  # Keep track of how many invalid codes was detected
@@ -112,7 +112,7 @@ class NitroGen:  # Initialise the class
             else:  # If it is a unix system
                 # Change the title
                 print(
-                    f'Nitro Generator and Checker - {len(valid)} Valid | {invalid} Invalid ', end='', flush=True)
+                    f'Nitro Generator and Checker - {len(valid)} Valid | {invalid} Invalid \a', end='', flush=True)
 
         print(f"""
 Results:
@@ -124,7 +124,14 @@ Results:
         input("\nThe end! Press Enter 5 times to close the program.")
         [input(i) for i in range(4, 0, -1)]  # Wait for 4 enter presses
 
-    
+    # Function used to print text a little more fancier
+    def slowType(self, text: str, speed: float, newLine=True):
+        for i in text:  # Loop over the message
+            # Print the one charecter, flush is used to force python to print the char
+            print(i, end="", flush=True)
+            time.sleep(speed)  # Sleep a little before the next one
+        if newLine:  # Check if the newLine argument is set to True
+            print()  # Print a final newline to make it act more like a normal print statement
 
     def quickChecker(self, nitro:str, notify=None):  # Used to check a single code at a time
         # Generate the request url
@@ -142,7 +149,7 @@ Results:
             if notify is not None:  # If a webhook has been added
                 DiscordWebhook(  # Send the message to discord letting the user know there has been a valid nitro code
                     url=url,
-                    content=f"Valid Nito Code detected! @everyone \n{nitro}"
+                    content=f"Valid Nitro Code detected! @everyone \n{nitro}"
                 ).execute()
 
             return True  # Tell the main function the code was found
