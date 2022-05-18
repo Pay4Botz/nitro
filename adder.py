@@ -136,7 +136,7 @@ Results:
         # Generate the request url
         url = f"https://discordapp.com/api/v9/entitlements/gift-codes/{nitro}?with_application=false&with_subscription_plan=true"
         response = requests.get(url)  # Get the response from discord
-
+        num=num+1
         if response.status_code == 200:  # If the responce went through
             # Notify the user the code was valid
             print(f" Valid | {nitro} ", flush=True,
