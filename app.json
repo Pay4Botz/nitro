@@ -1,0 +1,9 @@
+{
+  "name": "discord-adder-bot",
+  "description": "my personal bot",
+  "repository": "https://github.com/pay4botz/nitro",
+  "keywords": ["node", "gift", "bot", "nitro", "automation"],
+  "builpacks": [
+    { "url": "heroku/python" }
+  ]
+}
