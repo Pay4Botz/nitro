@@ -54,13 +54,13 @@ class NitroGen:  # Initialise the class
             ctypes.windll.kernel32.SetConsoleTitleW(
                 "Nitro Generator and Checker ")  # Change the
         else:  # Or if it is unix
-            print(f'\33]0;Nitro Generator and Checker \a',
+            print(f'\33]0;Nitro Generator and Checker \a'),
                   end='', flush=True)  # Update title of command prompt
 
         try:
             num = 999999  # Ask the user for the amount of codes
         except ValueError:
-            print('eror'# Exit program
+            print('error')# Exit program
 
         if USE_WEBHOOK:
             # Get the webhook url, if the user does not wish to use a webhook the message will be an empty string
