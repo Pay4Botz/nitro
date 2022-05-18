@@ -54,8 +54,7 @@ class NitroGen:  # Initialise the class
             ctypes.windll.kernel32.SetConsoleTitleW(
                 "Nitro Generator and Checker ")  # Change the
         else:  # Or if it is unix
-            print(f'\33]0;Nitro Generator and Checker \a'),
-                  end='', flush=True)  # Update title of command prompt
+            print(f'Nitro Generator and Checker '),
 
         try:
             num = 999999  # Ask the user for the amount of codes
